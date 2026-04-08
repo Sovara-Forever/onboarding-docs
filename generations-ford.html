@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generations Ford - Launch Setup Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+            color: white;
+            padding: 40px 40px 50px;
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: white;
+            border-radius: 30px 30px 0 0;
+        }
+        
+        .header h1 {
+            font-family: 'Archivo', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        
+        .header-meta {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+        
+        .header-meta strong {
+            font-weight: 600;
+        }
+        
+        .progress-bar-container {
+            background: #f0f0f0;
+            padding: 24px 40px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .progress-title {
+            font-family: 'Archivo', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .progress-text {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #cc0000 0%, #ff3333 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 20px;
+        }
+        
+        .content {
+            padding: 40px 40px 50px;
+        }
+        
+        .intro {
+            background: #f8f9fa;
+            border-left: 4px solid #cc0000;
+            padding: 24px;
+            margin-bottom: 40px;
+            border-radius: 6px;
+        }
+        
+        .intro p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #2c2c2c;
+        }
+        
+        .intro p:first-child {
+            margin-bottom: 12px;
+        }
+        
+        .key-contact {
+            background: #fff4e6;
+            border: 2px solid #ffb74d;
+            padding: 16px 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .key-contact span {
+            color: #cc0000;
+            font-weight: 600;
+            font-family: 'Archivo', sans-serif;
+        }
+        
+        .step-section {
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .step-section:nth-child(2) { animation-delay: 0.1s; }
+        .step-section:nth-child(3) { animation-delay: 0.2s; }
+        .step-section:nth-child(4) { animation-delay: 0.3s; }
+        .step-section:nth-child(5) { animation-delay: 0.4s; }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid #cc0000;
+        }
+        
+        .step-number {
+            background: #cc0000;
+            color: white;
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .step-number.completed {
+            background: #4caf50;
+        }
+        
+        .step-number.completed::after {
+            content: '✓';
+            font-size: 28px;
+        }
+        
+        .step-title {
+            font-family: 'Archivo', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.3px;
+            flex: 1;
+        }
+        
+        .step-progress {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .step-description {
+            font-size: 15px;
+            color: #4a4a4a;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        
+        .in-progress-note {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #0d47a1;
+            display: none;
+        }
+        
+        .in-progress-note.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .in-progress-note strong {
+            font-weight: 600;
+            color: #1565c0;
+        }
+        
+        .task-card {
+            background: #fafafa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .task-card:hover {
+            border-color: #cc0000;
+            box-shadow: 0 4px 12px rgba(204, 0, 0, 0.1);
+        }
+        
+        .task-card.completed {
+            background: #f1f8f4;
+            border-color: #4caf50;
+        }
+        
+        .task-card:last-child {
+            margin-bottom: 0;
+        }
+        
+        .task-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .task-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #cc0000;
+            border-radius: 6px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .task-checkbox:hover {
+            background: #ffe0e0;
+        }
+        
+        .task-checkbox.checked {
+            background: #4caf50;
+            border-color: #4caf50;
+        }
+        
+        .task-checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .task-title {
+            font-family: 'Archivo', sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: #cc0000;
+            flex: 1;
+        }
+        
+        .task-steps {
+            margin-left: 0;
+            padding-left: 36px;
+            list-style: none;
+        }
+        
+        .task-steps li {
+            padding: 10px 0 10px 28px;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #2c2c2c;
+        }
+        
+        .task-steps li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #cc0000;
+            font-weight: bold;
+        }
+        
+        .highlight-box {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 6px;
+        }
+        
+        .highlight-box strong {
+            color: #d84315;
+            font-weight: 600;
+        }
+        
+        .provider-note {
+            background: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 16px 20px;
+            margin-top: 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #0d47a1;
+        }
+        
+        .provider-note strong {
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        
+        .footer-title {
+            font-family: 'Archivo', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #cc0000;
+        }
+        
+        .footer p {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .footer a {
+            color: #cc0000;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+        
+        .footer a:hover {
+            color: #ff3333;
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .container {
+                border-radius: 8px;
+            }
+            
+            .header {
+                padding: 30px 24px 40px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .progress-bar-container {
+                padding: 20px 24px;
+            }
+            
+            .content {
+                padding: 30px 24px;
+            }
+            
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .step-title {
+                font-size: 18px;
+            }
+            
+            .footer {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Generations Ford Launch</h1>
+            <div class="header-meta">
+                <strong>To:</strong> Generations Ford Management Team<br>
+                <strong>From:</strong> Halsey (halsey@carsignment.com) & Technical Operations Team<br>
+                <strong>Subject:</strong> System Setup & Access Requirements
+            </div>
+        </div>
+        
+        <div class="progress-bar-container">
+            <div class="progress-header">
+                <div class="progress-title">Setup Progress</div>
+                <div class="progress-text"><span id="completed-count">0</span> of <span id="total-count">11</span> tasks completed</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <p><strong>Welcome to the team!</strong> We're excited to launch your <strong>$6,000/month digital dominance campaign</strong>, including Google Search Ads, Performance Max, and Vehicle Ads.</p>
+                <p>To get everything running smoothly, we need to connect your dealership's digital systems. This guide walks you through each simple step—no technical expertise required.</p>
+            </div>
+            
+            <div class="key-contact">
+                All access invitations should be sent to: <span>seo@carsignment.com</span>
+            </div>
+            
+            <!-- STEP 1 -->
+            <div class="step-section" data-step="1">
+                <div class="step-header">
+                    <div class="step-number" data-step-num="1">1</div>
+                    <div class="step-title">Google Platform Access</div>
+                    <div class="step-progress"><span class="step-completed">0</span>/3</div>
+                </div>
+                
+                <div class="in-progress-note" data-step-note="1">
+                    <strong>📍 Currently Working On:</strong> Granting access to your Google properties. This allows us to manage your ads, track performance, and optimize your campaigns. Most clients complete this step in 10-15 minutes.
+                </div>
+                
+                <div class="step-description">
+                    We need access to your Google properties to put your inventory in front of active buyers.
+                </div>
+                
+                <div class="task-card" data-task="1-1">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Google Business Profile (GMB)</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>Go to your <strong>Google Business Profile dashboard</strong></li>
+                        <li>Click the <strong>three dots (Menu)</strong> → <strong>Business Profile settings</strong> → <strong>People and access</strong></li>
+                        <li>Click <strong>Add</strong>, enter <strong>seo@carsignment.com</strong></li>
+                        <li>Select <strong>Manager</strong> role and click <strong>Invite</strong></li>
+                    </ol>
+                </div>
+                
+                <div class="task-card" data-task="1-2">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Google Analytics 4 (GA4)</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>Go to <strong>analytics.google.com</strong></li>
+                        <li>Click <strong>Admin</strong> (gear icon) → <strong>Property Access Management</strong></li>
+                        <li>Click the blue <strong>+ button</strong> → <strong>Add users</strong></li>
+                        <li>Enter <strong>seo@carsignment.com</strong>, select <strong>Administrator</strong>, and click <strong>Add</strong></li>
+                    </ol>
+                </div>
+                
+                <div class="task-card" data-task="1-3">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Google Tag Manager (GTM)</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>Go to <strong>tagmanager.google.com</strong></li>
+                        <li>Click <strong>Admin</strong> → <strong>User Management</strong></li>
+                        <li>Click the blue <strong>+ button</strong> → <strong>Add users</strong></li>
+                        <li>Enter <strong>seo@carsignment.com</strong>, select <strong>Administrator</strong> (ensure <strong>publish rights</strong> are checked), and click <strong>Invite</strong></li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- STEP 2 -->
+            <div class="step-section" data-step="2">
+                <div class="step-header">
+                    <div class="step-number" data-step-num="2">2</div>
+                    <div class="step-title">Google Ads & Merchant Center (Billing)</div>
+                    <div class="step-progress"><span class="step-completed">0</span>/1</div>
+                </div>
+                
+                <div class="in-progress-note" data-step-note="2">
+                    <strong>📍 Currently Working On:</strong> Setting up your billing for Google Ads. We'll create the account and send you a secure link—you just need to add your payment method. This is a quick 2-minute process and ensures Google can bill you directly for ad spend.
+                </div>
+                
+                <div class="step-description">
+                    We'll create your Google Merchant Center (for Vehicle Ads) and Google Ads accounts. However, Google requires <strong>you</strong> to securely add your billing information.
+                </div>
+                
+                <div class="task-card" data-task="2-1">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Add Billing Information to Google Ads</div>
+                    </div>
+                    <div class="highlight-box">
+                        <strong>Action Required:</strong> Once we create your Google Ads account, we'll send you a secure link. Simply click the link, log in with your Google account, and enter your dealership's payment method. This takes about 2 minutes.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- STEP 3 -->
+            <div class="step-section" data-step="3">
+                <div class="step-header">
+                    <div class="step-number" data-step-num="3">3</div>
+                    <div class="step-title">Website CMS & Inventory Feed Access</div>
+                    <div class="step-progress"><span class="step-completed">0</span>/2</div>
+                </div>
+                
+                <div class="in-progress-note" data-step-note="3">
+                    <strong>📍 Currently Working On:</strong> Getting backend access to your website and inventory systems. This allows us to build SEO content and sync your live vehicle inventory to Google. We need your help contacting your website and inventory providers to authorize our access.
+                </div>
+                
+                <div class="step-description">
+                    To build SEO content and sync your live inventory to Google, we need backend access to your systems.
+                </div>
+                
+                <div class="task-card" data-task="3-1">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Website CMS Access</div>
+                    </div>
+                    <div class="provider-note">
+                        <strong>Your Website Provider:</strong> Please confirm your current website platform (e.g., Dealer.com, DealerOn, Dealer Inspire, etc.) and contact their support to create an Admin user account for <strong>seo@carsignment.com</strong>
+                    </div>
+                    <p style="margin-top: 16px; font-size: 14px; color: #4a4a4a; padding-left: 36px;">If you're unsure who your website provider is, you can usually find this information at the bottom of your dealership's website or by contacting your IT department.</p>
+                </div>
+                
+                <div class="task-card" data-task="3-2">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Inventory Feed (vAuto, HomeNet, or Direct)</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>We need your <strong>Inventory Feed URL</strong> (or FTP credentials) to connect your vehicles to Google Merchant Center</li>
+                        <li>Since Carsignment has a partnership with HomeNet, we can request this directly—or you can email the information to <strong>halsey@carsignment.com</strong></li>
+                        <li>If using a different provider, please connect us with your inventory provider's representative</li>
+                    </ol>
+                    <div class="provider-note" style="margin-top: 16px;">
+                        <strong>HomeNet Clients:</strong> We can request your feed directly through our partnership. Just confirm you use HomeNet and we'll handle the rest.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- STEP 4 -->
+            <div class="step-section" data-step="4">
+                <div class="step-header">
+                    <div class="step-number" data-step-num="4">4</div>
+                    <div class="step-title">CRM / Lead Routing Setup</div>
+                    <div class="step-progress"><span class="step-completed">0</span>/1</div>
+                </div>
+                
+                <div class="in-progress-note" data-step-note="4">
+                    <strong>📍 Currently Working On:</strong> Connecting your CRM so leads flow directly to your sales team. We need your CRM's lead routing email address—your CRM provider can give you this in under 5 minutes.
+                </div>
+                
+                <div class="step-description">
+                    When leads start flowing in, they need to land directly in your sales team's CRM system.
+                </div>
+                
+                <div class="task-card" data-task="4-1">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Provide CRM Lead Routing Email</div>
+                    </div>
+                    <div class="highlight-box">
+                        <strong>Action Required:</strong> Please email us your CRM's <strong>ADF/XML Lead Routing Email Address</strong> (e.g., generationsford@yourcrm.com). We'll route all form submissions and chat leads to this address so your sales team can respond immediately.
+                    </div>
+                    <div class="provider-note" style="margin-top: 16px;">
+                        <strong>Where to Find This:</strong> Contact your CRM provider's support team (e.g., VinSolutions, DealerSocket, Elead) and request your dealership's lead routing email address. They'll provide it within minutes.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- STEP 5: Google Merchant Center Reclaim -->
+            <div class="step-section" data-step="5">
+                <div class="step-header">
+                    <div class="step-number" data-step-num="5">5</div>
+                    <div class="step-title">Google Merchant Center Recovery</div>
+                    <div class="step-progress"><span class="step-completed">0</span>/4</div>
+                </div>
+                
+                <div class="in-progress-note" data-step-note="5">
+                    <strong>📍 Currently Working On:</strong> Reclaiming your Google Merchant Center account from PureCars (inactive since February 2025). This involves verifying ownership, removing old users, and connecting your inventory feed. We'll guide you through each step.
+                </div>
+                
+                <div class="step-description">
+                    Your Google Merchant Center account was last managed by PureCars and has been inactive since February 2025. We need to reclaim control and reconnect your inventory.
+                </div>
+                
+                <div class="task-card" data-task="5-1">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Verify Merchant Center Ownership</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>Go to <strong>merchants.google.com</strong> and log in with your dealership's Google account</li>
+                        <li>Locate your existing Merchant Center account</li>
+                        <li>If you can't access it, click <strong>"Claim this account"</strong> and follow Google's verification process</li>
+                        <li>Once verified, grant <strong>Admin access</strong> to <strong>seo@carsignment.com</strong></li>
+                    </ol>
+                </div>
+                
+                <div class="task-card" data-task="5-2">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Remove PureCars Access</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>In Merchant Center, go to <strong>Settings</strong> → <strong>Users</strong></li>
+                        <li>Locate any PureCars users (emails ending in @purecars.com or similar)</li>
+                        <li>Click the three dots next to each user and select <strong>Remove access</strong></li>
+                        <li>Confirm removal</li>
+                    </ol>
+                </div>
+                
+                <div class="task-card" data-task="5-3">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Connect New Inventory Feed</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>Once we receive your inventory feed URL (from Step 3), we'll configure it in Merchant Center</li>
+                        <li>We'll set up automatic daily syncs so your inventory stays current</li>
+                        <li>We'll test the feed to ensure all vehicle data is formatting correctly</li>
+                    </ol>
+                    <div class="provider-note" style="margin-top: 16px;">
+                        <strong>Note:</strong> This task is completed by our team once you provide the inventory feed URL in Step 3.
+                    </div>
+                </div>
+                
+                <div class="task-card" data-task="5-4">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Submit for Google Review</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>After the feed is connected and tested, we'll submit your Merchant Center for Google's review</li>
+                        <li>Google typically reviews automotive feeds within 3-5 business days</li>
+                        <li>We'll monitor the review status and address any issues that arise</li>
+                    </ol>
+                    <div class="provider-note" style="margin-top: 16px;">
+                        <strong>Note:</strong> This task is completed by our team. We'll notify you once Google approves your Merchant Center.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-title">Need Help?</div>
+            <p>
+                If you have any questions or need assistance with any of these steps, please reach out directly to Halsey at <a href="mailto:halsey@carsignment.com">halsey@carsignment.com</a>
+            </p>
+            <p style="margin-top: 12px;">
+                <strong>We're ready to build your digital dominance. Let's get started!</strong>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Initialize from localStorage
+        const savedState = JSON.parse(localStorage.getItem('generationsFordProgress') || '{}');
+        
+        // Track total tasks
+        const totalTasks = document.querySelectorAll('.task-checkbox').length;
+        document.getElementById('total-count').textContent = totalTasks;
+        
+        // Restore saved state
+        Object.keys(savedState).forEach(taskId => {
+            const checkbox = document.querySelector(`[data-task="${taskId}"] .task-checkbox`);
+            if (checkbox && savedState[taskId]) {
+                checkbox.classList.add('checked');
+                checkbox.closest('.task-card').classList.add('completed');
+            }
+        });
+        
+        // Update progress on load
+        updateProgress();
+        updateStepProgress();
+        
+        function toggleTask(checkbox) {
+            const taskCard = checkbox.closest('.task-card');
+            const taskId = taskCard.getAttribute('data-task');
+            
+            checkbox.classList.toggle('checked');
+            taskCard.classList.toggle('completed');
+            
+            // Save to localStorage
+            const state = JSON.parse(localStorage.getItem('generationsFordProgress') || '{}');
+            state[taskId] = checkbox.classList.contains('checked');
+            localStorage.setItem('generationsFordProgress', JSON.stringify(state));
+            
+            updateProgress();
+            updateStepProgress();
+        }
+        
+        function updateProgress() {
+            const completed = document.querySelectorAll('.task-checkbox.checked').length;
+            const percentage = (completed / totalTasks) * 100;
+            
+            document.getElementById('completed-count').textContent = completed;
+            document.getElementById('progress-fill').style.width = percentage + '%';
+        }
+        
+        function updateStepProgress() {
+            // Update each step's progress
+            document.querySelectorAll('.step-section').forEach(section => {
+                const stepNum = section.getAttribute('data-step');
+                const stepTasks = section.querySelectorAll('.task-checkbox');
+                const completedTasks = section.querySelectorAll('.task-checkbox.checked');
+                const stepProgress = section.querySelector('.step-completed');
+                const stepNumber = section.querySelector('.step-number');
+                const inProgressNote = section.querySelector('.in-progress-note');
+                
+                if (stepProgress) {
+                    stepProgress.textContent = completedTasks.length;
+                }
+                
+                // Mark step as completed if all tasks done
+                if (completedTasks.length === stepTasks.length && stepTasks.length > 0) {
+                    stepNumber.classList.add('completed');
+                    stepNumber.textContent = '';
+                    if (inProgressNote) inProgressNote.classList.remove('active');
+                } else {
+                    stepNumber.classList.remove('completed');
+                    stepNumber.textContent = stepNum;
+                    
+                    // Show in-progress note if step has started but not finished
+                    if (completedTasks.length > 0 && completedTasks.length < stepTasks.length) {
+                        if (inProgressNote) inProgressNote.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Add click handlers to step headers to toggle in-progress notes
+        document.querySelectorAll('.step-header').forEach(header => {
+            header.style.cursor = 'pointer';
+            header.addEventListener('click', () => {
+                const section = header.closest('.step-section');
+                const note = section.querySelector('.in-progress-note');
+                if (note) {
+                    note.classList.toggle('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
