@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McHugh Jeep - SEO Access Setup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #003087 0%, #001f54 100%);
+            color: white;
+            padding: 40px 40px 50px;
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: white;
+            border-radius: 30px 30px 0 0;
+        }
+        
+        .header h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 38px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        
+        .header-meta {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+        
+        .header-meta strong {
+            font-weight: 600;
+        }
+        
+        .progress-bar-container {
+            background: #f5f5f5;
+            padding: 24px 40px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .progress-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+        }
+        
+        .progress-text {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #003087 0%, #0066cc 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 20px;
+        }
+        
+        .content {
+            padding: 40px 40px 50px;
+        }
+        
+        .intro {
+            background: #e8f4f8;
+            border-left: 4px solid #003087;
+            padding: 24px;
+            margin-bottom: 40px;
+            border-radius: 6px;
+        }
+        
+        .intro p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #2c2c2c;
+        }
+        
+        .intro p:first-child {
+            margin-bottom: 12px;
+        }
+        
+        .key-contact {
+            background: #fff4e6;
+            border: 2px solid #ffb74d;
+            padding: 16px 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .key-contact span {
+            color: #003087;
+            font-weight: 600;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        .step-section {
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .step-section:nth-child(2) { animation-delay: 0.1s; }
+        .step-section:nth-child(3) { animation-delay: 0.2s; }
+        .step-section:nth-child(4) { animation-delay: 0.3s; }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid #003087;
+        }
+        
+        .step-number {
+            background: #003087;
+            color: white;
+            font-family: 'Bebas Neue', sans-serif;
+            font-weight: 400;
+            font-size: 24px;
+            letter-spacing: 1px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .step-number.completed {
+            background: #4caf50;
+        }
+        
+        .step-number.completed::after {
+            content: '✓';
+            font-size: 28px;
+        }
+        
+        .step-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+            flex: 1;
+        }
+        
+        .step-progress {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .step-description {
+            font-size: 15px;
+            color: #4a4a4a;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        
+        .in-progress-note {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #0d47a1;
+            display: none;
+        }
+        
+        .in-progress-note.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .in-progress-note strong {
+            font-weight: 600;
+            color: #1565c0;
+        }
+        
+        .task-card {
+            background: #fafafa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .task-card:hover {
+            border-color: #003087;
+            box-shadow: 0 4px 12px rgba(0, 48, 135, 0.15);
+        }
+        
+        .task-card.completed {
+            background: #f1f8f4;
+            border-color: #4caf50;
+        }
+        
+        .task-card.optional {
+            background: #f9f9f9;
+            border: 2px dashed #bdbdbd;
+        }
+        
+        .task-card.optional .task-title::after {
+            content: '(Optional)';
+            font-size: 12px;
+            color: #666;
+            font-weight: 400;
+            margin-left: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .task-card:last-child {
+            margin-bottom: 0;
+        }
+        
+        .task-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .task-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #003087;
+            border-radius: 6px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .task-checkbox:hover {
+            background: #e3f2fd;
+        }
+        
+        .task-checkbox.checked {
+            background: #4caf50;
+            border-color: #4caf50;
+        }
+        
+        .task-checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .task-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #003087;
+            letter-spacing: 0.5px;
+            flex: 1;
+        }
+        
+        .task-steps {
+            margin-left: 0;
+            padding-left: 36px;
+            list-style: none;
+        }
+        
+        .task-steps li {
+            padding: 10px 0 10px 28px;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #2c2c2c;
+        }
+        
+        .task-steps li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #003087;
+            font-weight: bold;
+        }
+        
+        .task-steps li strong {
+            font-weight: 600;
+        }
+        
+        .highlight-box {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 6px;
+        }
+        
+        .highlight-box strong {
+            color: #d84315;
+            font-weight: 600;
+        }
+        
+        .provider-note {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 16px 20px;
+            margin-top: 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #1b5e20;
+        }
+        
+        .provider-note strong {
+            font-weight: 600;
+        }
+        
+        .future-section {
+            background: #f5f5f5;
+            border: 2px dashed #9e9e9e;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 50px;
+        }
+        
+        .future-section h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22px;
+            font-weight: 400;
+            color: #666;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        
+        .future-section p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        
+        .future-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .future-section ul li {
+            padding: 8px 0 8px 24px;
+            position: relative;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .future-section ul li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #9e9e9e;
+        }
+        
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        
+        .footer-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            color: #0066cc;
+        }
+        
+        .footer p {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .footer a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+        
+        .footer a:hover {
+            color: #66b3ff;
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .container {
+                border-radius: 8px;
+            }
+            
+            .header {
+                padding: 30px 24px 40px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .progress-bar-container {
+                padding: 20px 24px;
+            }
+            
+            .content {
+                padding: 30px 24px;
+            }
+            
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .step-title {
+                font-size: 20px;
+            }
+            
+            .footer {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>McHugh Jeep SEO Setup</h1>
+            <div class="header-meta">
+                <strong>To:</strong> McHugh Chrysler Dodge Jeep Ram FIAT Team<br>
+                <strong>From:</strong> Halsey (halsey@carsignment.com) & SEO Operations Team<br>
+                <strong>Subject:</strong> SEO Platform Access Requirements
+            </div>
+        </div>
+        
+        <div class="progress-bar-container">
+            <div class="progress-header">
+                <div class="progress-title">Setup Progress</div>
+                <div class="progress-text"><span id="completed-count">0</span> of <span id="total-count">6</span> tasks completed</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <p><strong>Expanding Our Partnership:</strong> We're excited to add <strong>SEO services</strong> to our work together. To drive organic traffic and maximize your local visibility, we need access to your analytics and content management systems.</p>
+                <p>This guide walks you through each simple step to grant the necessary access. Most dealerships complete this in 15-20 minutes.</p>
+            </div>
+            
+            <div class="key-contact">
+                All access invitations should be sent to: <span>seo@carsignment.com</span>
+            </div>
+            
+            <!-- STEP 1: Google Analytics & Search Console -->
+            <div class="step-section" data-step="1">
+                <div class="step-header">
+                    <div class="step-number" data-step-num="1">1</div>
+                    <div class="step-title">Google Analytics & Search Console</div>
+                    <div class="step-progress"><span class="step-completed">0</span>/2</div>
+                </div>
+                
+                <div class="in-progress-note" data-step-note="1">
+                    <strong>📍 Currently Working On:</strong> Granting access to your Google Analytics and Search Console. This allows us to track organic traffic, keyword performance, and technical SEO health. Most clients complete this step in 5-10 minutes.
+                </div>
+                
+                <div class="step-description">
+                    We need access to your analytics platforms to monitor SEO performance and make data-driven optimizations.
+                </div>
+                
+                <div class="task-card" data-task="1-1">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Google Analytics 4 (GA4)</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>Go to <strong>analytics.google.com</strong></li>
+                        <li>Click <strong>Admin</strong> (gear icon) → <strong>Property Access Management</strong></li>
+                        <li>Click the blue <strong>+ button</strong> → <strong>Add users</strong></li>
+                        <li>Enter <strong>seo@carsignment.com</strong>, select <strong>Administrator</strong>, and click <strong>Add</strong></li>
+                    </ol>
+                    <div class="provider-note">
+                        <strong>Note:</strong> Your site uses multiple GA4 properties. Please grant access to your primary dealership property (likely labeled with your store name).
+                    </div>
+                </div>
+                
+                <div class="task-card" data-task="1-2">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Google Search Console (GSC)</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>Go to <strong>search.google.com/search-console</strong></li>
+                        <li>Select your property (your website URL)</li>
+                        <li>Click <strong>Settings</strong> (left sidebar) → <strong>Users and permissions</strong></li>
+                        <li>Click <strong>Add user</strong>, enter <strong>seo@carsignment.com</strong>, select <strong>Owner</strong>, and click <strong>Add</strong></li>
+                    </ol>
+                    <div class="provider-note">
+                        <strong>If you don't have Search Console set up yet:</strong> No problem! Let us know and we'll guide you through the setup process or handle it for you.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- STEP 2: Google Business Profile & Tag Manager -->
+            <div class="step-section" data-step="2">
+                <div class="step-header">
+                    <div class="step-number" data-step-num="2">2</div>
+                    <div class="step-title">Google Business Profile & Tag Manager</div>
+                    <div class="step-progress"><span class="step-completed">0</span>/2</div>
+                </div>
+                
+                <div class="in-progress-note" data-step-note="2">
+                    <strong>📍 Currently Working On:</strong> Setting up access to your Google Business Profile (for local SEO) and optionally Tag Manager (for advanced tracking). These tools help us optimize your local search presence.
+                </div>
+                
+                <div class="step-description">
+                    Local SEO requires management of your Google Business Profile. Tag Manager access is optional but helpful for advanced tracking.
+                </div>
+                
+                <div class="task-card" data-task="2-1">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Google Business Profile (GMB)</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>Go to your <strong>Google Business Profile dashboard</strong></li>
+                        <li>Click the <strong>three dots (Menu)</strong> → <strong>Business Profile settings</strong> → <strong>People and access</strong></li>
+                        <li>Click <strong>Add</strong>, enter <strong>seo@carsignment.com</strong></li>
+                        <li>Select <strong>Manager</strong> role and click <strong>Invite</strong></li>
+                    </ol>
+                </div>
+                
+                <div class="task-card optional" data-task="2-2">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Google Tag Manager (GTM)</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>Go to <strong>tagmanager.google.com</strong></li>
+                        <li>Click <strong>Admin</strong> → <strong>User Management</strong></li>
+                        <li>Click the blue <strong>+ button</strong> → <strong>Add users</strong></li>
+                        <li>Enter <strong>seo@carsignment.com</strong>, select <strong>Administrator</strong> (ensure <strong>publish rights</strong> are checked), and click <strong>Invite</strong></li>
+                    </ol>
+                    <div class="provider-note">
+                        <strong>Optional:</strong> GTM access helps us implement advanced tracking and optimize conversion events. If you're unsure or prefer not to grant this now, we can work without it.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- STEP 3: Website CMS Access -->
+            <div class="step-section" data-step="3">
+                <div class="step-header">
+                    <div class="step-number" data-step-num="3">3</div>
+                    <div class="step-title">Website CMS Access (Dealer-On)</div>
+                    <div class="step-progress"><span class="step-completed">0</span>/2</div>
+                </div>
+                
+                <div class="in-progress-note" data-step-note="3">
+                    <strong>📍 Currently Working On:</strong> Getting backend access to your Dealer-On website. This allows us to create and optimize SEO content, meta tags, and site structure for better search rankings.
+                </div>
+                
+                <div class="step-description">
+                    To create SEO-optimized content and implement technical improvements, we need admin access to your Dealer-On CMS.
+                </div>
+                
+                <div class="task-card" data-task="3-1">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Contact Dealer-On Support</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>Call or email <strong>Dealer-On Support</strong> (your account manager or support team)</li>
+                        <li>Request: <em>"Please create an Admin user account for <strong>seo@carsignment.com</strong> on our website CMS"</em></li>
+                        <li>They may ask for verification (your dealership name, website URL, or account info)</li>
+                        <li>Once created, they'll send login credentials to <strong>seo@carsignment.com</strong></li>
+                    </ol>
+                    <div class="provider-note">
+                        <strong>Dealer-On Contact:</strong> If you don't have your Dealer-On support contact info handy, you can typically find it in your welcome email or by calling their main support line.
+                    </div>
+                </div>
+                
+                <div class="task-card" data-task="3-2">
+                    <div class="task-header">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-title">Confirm Access Created</div>
+                    </div>
+                    <ol class="task-steps">
+                        <li>Once Dealer-On confirms they've created the account, let us know by emailing <strong>halsey@carsignment.com</strong></li>
+                        <li>We'll verify we can log in and access the necessary tools</li>
+                        <li>If there are any issues, we'll coordinate directly with Dealer-On support</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- FUTURE EXPANSION -->
+            <div class="future-section">
+                <h3>Future Campaign Expansion (Optional)</h3>
+                <p>As we grow our partnership, you may want to add additional digital marketing services. Here's what else we can provide if you're interested:</p>
+                <ul>
+                    <li><strong>Google Ads (Search & Performance Max):</strong> Paid search campaigns to drive immediate leads</li>
+                    <li><strong>Google Merchant Center & Vehicle Ads:</strong> Showcase your inventory directly in Google search results</li>
+                    <li><strong>CRM Lead Routing:</strong> Connect all leads directly to your sales team's CRM system</li>
+                    <li><strong>Social Media Advertising:</strong> Facebook, Instagram, and YouTube campaigns</li>
+                    <li><strong>Reputation Management:</strong> Monitor and respond to reviews across all platforms</li>
+                </ul>
+                <p style="margin-top: 16px;"><strong>Interested?</strong> Just let Halsey know and we'll send over a detailed proposal with pricing and setup requirements.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-title">Need Help?</div>
+            <p>
+                If you have any questions or need assistance with any of these steps, please reach out directly to Halsey at <a href="mailto:halsey@carsignment.com">halsey@carsignment.com</a>
+            </p>
+            <p style="margin-top: 12px;">
+                <strong>We're ready to drive your organic growth. Let's get started!</strong>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Initialize from localStorage
+        const savedState = JSON.parse(localStorage.getItem('mchughJeepSEOProgress') || '{}');
+        
+        // Track total tasks (excluding optional if not checked)
+        const allTasks = document.querySelectorAll('.task-checkbox');
+        const totalTasks = allTasks.length;
+        document.getElementById('total-count').textContent = totalTasks;
+        
+        // Restore saved state
+        Object.keys(savedState).forEach(taskId => {
+            const checkbox = document.querySelector(`[data-task="${taskId}"] .task-checkbox`);
+            if (checkbox && savedState[taskId]) {
+                checkbox.classList.add('checked');
+                checkbox.closest('.task-card').classList.add('completed');
+            }
+        });
+        
+        // Update progress on load
+        updateProgress();
+        updateStepProgress();
+        
+        function toggleTask(checkbox) {
+            const taskCard = checkbox.closest('.task-card');
+            const taskId = taskCard.getAttribute('data-task');
+            
+            checkbox.classList.toggle('checked');
+            taskCard.classList.toggle('completed');
+            
+            // Save to localStorage
+            const state = JSON.parse(localStorage.getItem('mchughJeepSEOProgress') || '{}');
+            state[taskId] = checkbox.classList.contains('checked');
+            localStorage.setItem('mchughJeepSEOProgress', JSON.stringify(state));
+            
+            updateProgress();
+            updateStepProgress();
+        }
+        
+        function updateProgress() {
+            const completed = document.querySelectorAll('.task-checkbox.checked').length;
+            const percentage = (completed / totalTasks) * 100;
+            
+            document.getElementById('completed-count').textContent = completed;
+            document.getElementById('progress-fill').style.width = percentage + '%';
+        }
+        
+        function updateStepProgress() {
+            // Update each step's progress
+            document.querySelectorAll('.step-section').forEach(section => {
+                const stepNum = section.getAttribute('data-step');
+                const stepTasks = section.querySelectorAll('.task-checkbox');
+                const completedTasks = section.querySelectorAll('.task-checkbox.checked');
+                const stepProgress = section.querySelector('.step-completed');
+                const stepNumber = section.querySelector('.step-number');
+                const inProgressNote = section.querySelector('.in-progress-note');
+                
+                if (stepProgress) {
+                    stepProgress.textContent = completedTasks.length;
+                }
+                
+                // Mark step as completed if all tasks done
+                if (completedTasks.length === stepTasks.length && stepTasks.length > 0) {
+                    stepNumber.classList.add('completed');
+                    stepNumber.textContent = '';
+                    if (inProgressNote) inProgressNote.classList.remove('active');
+                } else {
+                    stepNumber.classList.remove('completed');
+                    stepNumber.textContent = stepNum;
+                    
+                    // Show in-progress note if step has started but not finished
+                    if (completedTasks.length > 0 && completedTasks.length < stepTasks.length) {
+                        if (inProgressNote) inProgressNote.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Add click handlers to step headers to toggle in-progress notes
+        document.querySelectorAll('.step-header').forEach(header => {
+            header.style.cursor = 'pointer';
+            header.addEventListener('click', () => {
+                const section = header.closest('.step-section');
+                const note = section.querySelector('.in-progress-note');
+                if (note) {
+                    note.classList.toggle('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
