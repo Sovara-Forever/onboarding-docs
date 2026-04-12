@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Merchant Center Verification Guide — Ford Dealerships</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           ROOT VARIABLES
+        ============================================================ */
+        :root {
+            --google-blue:        #1a73e8;
+            --google-blue-dark:   #1557b0;
+            --google-blue-light:  #e8f0fe;
+            --google-green:       #0f9d58;
+            --google-green-light: #e6f4ea;
+            --google-red:         #ea4335;
+            --google-red-light:   #fce8e6;
+            --google-yellow:      #fbbc04;
+            --google-yellow-light:#fef9e7;
+            --google-gray-50:     #f8f9fa;
+            --google-gray-100:    #f1f3f4;
+            --google-gray-200:    #e8eaed;
+            --google-gray-300:    #dadce0;
+            --google-gray-400:    #bdc1c6;
+            --google-gray-500:    #9aa0a6;
+            --google-gray-600:    #80868b;
+            --google-gray-700:    #5f6368;
+            --google-gray-800:    #3c4043;
+            --google-gray-900:    #202124;
+            --ford-blue:          #003478;
+            --ford-light-blue:    #0055b8;
+            --agency-purple:      #6200ea;
+            --agency-purple-light:#ede7f6;
+            --coordinator-teal:   #00695c;
+            --coordinator-light:  #e0f2f1;
+            --shadow-sm:  0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md:  0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+            --shadow-lg:  0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+            --shadow-xl:  0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+            --radius-sm:  8px;
+            --radius-md:  12px;
+            --radius-lg:  16px;
+            --radius-xl:  20px;
+        }
+
+        /* ============================================================
+           RESET & BASE
+        ============================================================ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--google-gray-50);
+            color: var(--google-gray-900);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ============================================================
+           ROLE LEGEND BANNER
+        ============================================================ */
+        .role-legend {
+            background: white;
+            border-bottom: 1px solid var(--google-gray-200);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--google-gray-700);
+        }
+
+        .role-legend-label {
+            font-weight: 600;
+            color: var(--google-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-size: 0.7rem;
+        }
+
+        .role-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .role-pill.dealer  { background: var(--agency-purple-light); color: var(--agency-purple); }
+        .role-pill.agency  { background: #fff3e0; color: #e65100; }
+        .role-pill.you     { background: var(--coordinator-light); color: var(--coordinator-teal); }
+
+        .role-pill svg { width: 13px; height: 13px; }
+
+        /* ============================================================
+           PAGE HEADER
+        ============================================================ */
+        .page-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 3rem 1.5rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(26,115,232,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%; left: -10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(15,157,88,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.25rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .header-badge svg { width: 16px; height: 16px; }
+
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .page-header p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.75);
+            max-width: 650px;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           ROLE RESPONSIBILITY OVERVIEW
+        ============================================================ */
+        .role-overview {
+            max-width: 900px;
+            margin: 1.5rem auto 0;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .role-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1.25rem 1.5rem;
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .role-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+
+        .role-card.dealer::before  { background: var(--agency-purple); }
+        .role-card.agency::before  { background: #e65100; }
+        .role-card.you::before     { background: var(--coordinator-teal); }
+
+        .role-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .role-card-icon {
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .role-card.dealer .role-card-icon  { background: var(--agency-purple-light); color: var(--agency-purple); }
+        .role-card.agency .role-card-icon  { background: #fff3e0; color: #e65100; }
+        .role-card.you .role-card-icon     { background: var(--coordinator-light); color: var(--coordinator-teal); }
+
+        .role-card-icon svg { width: 18px; height: 18px; }
+
+        .role-card h3 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--google-gray-800);
+        }
+
+        .role-card p {
+            font-size: 0.78rem;
+            color: var(--google-gray-600);
+            line-height: 1.55;
+        }
+
+        .role-card ul {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .role-card ul li {
+            font-size: 0.78rem;
+            color: var(--google-gray-600);
+            padding: 0.2rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+            line-height: 1.5;
+        }
+
+        .role-card ul li::before {
+            content: '→';
+            font-size: 0.7rem;
+            margin-top: 0.15rem;
+            flex-shrink: 0;
+            opacity: 0.6;
+        }
+
+        /* ============================================================
+           TABS
+        ============================================================ */
+        .tabs-container {
+            max-width: 900px;
+            margin: 1.5rem auto 0;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tabs {
+            display: flex;
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 0.35rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--google-gray-200);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 0.85rem 1.25rem;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--google-gray-600);
+            cursor: pointer;
+            border-radius: var(--radius-md);
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover { color: var(--google-gray-800); background: var(--google-gray-50); }
+
+        .tab-btn.active {
+            background: var(--google-blue);
+            color: white;
+            box-shadow: 0 2px 8px rgba(26,115,232,0.3);
+        }
+
+        .tab-btn .tab-icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+        /* ============================================================
+           MAIN CONTENT
+        ============================================================ */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .tab-panel { display: none; animation: fadeIn 0.35s ease; }
+        .tab-panel.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============================================================
+           SECTION CARDS
+        ============================================================ */
+        .section-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--google-gray-200);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .section-card:hover { box-shadow: var(--shadow-md); }
+
+        /* Role-specific card borders */
+        .section-card.role-dealer  { border-left: 4px solid var(--agency-purple); }
+        .section-card.role-agency  { border-left: 4px solid #e65100; }
+        .section-card.role-you     { border-left: 4px solid var(--coordinator-teal); }
+
+        .section-card h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--google-gray-900);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-card h2 .section-icon { width: 24px; height: 24px; flex-shrink: 0; }
+
+        .section-card .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--google-gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           ROLE BADGE (inline in headings)
+        ============================================================ */
+        .role-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.2rem 0.65rem;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .role-badge.dealer { background: var(--agency-purple-light); color: var(--agency-purple); }
+        .role-badge.agency { background: #fff3e0; color: #e65100; }
+        .role-badge.you    { background: var(--coordinator-light); color: var(--coordinator-teal); }
+        .role-badge svg    { width: 11px; height: 11px; }
+
+        /* ============================================================
+           RESPONSIBILITY CALLOUT BOX
+        ============================================================ */
+        .responsibility-box {
+            border-radius: var(--radius-md);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .responsibility-box.dealer {
+            background: var(--agency-purple-light);
+            border-color: #ce93d8;
+            color: #4a148c;
+        }
+
+        .responsibility-box.agency {
+            background: #fff3e0;
+            border-color: #ffcc80;
+            color: #bf360c;
+        }
+
+        .responsibility-box.you {
+            background: var(--coordinator-light);
+            border-color: #80cbc4;
+            color: #004d40;
+        }
+
+        .responsibility-box svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; }
+
+        .responsibility-box .rb-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.3rem;
+        }
+
+        .responsibility-box p {
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           STEPS LIST
+        ============================================================ */
+        .steps-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps-list li {
+            counter-increment: step-counter;
+            position: relative;
+            padding: 1.25rem 1.25rem 1.25rem 3.75rem;
+            margin-bottom: 0.75rem;
+            background: var(--google-gray-50);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--google-gray-100);
+            transition: all 0.25s ease;
+        }
+
+        .steps-list li:hover {
+            background: white;
+            border-color: var(--google-gray-300);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .steps-list li:last-child { margin-bottom: 0; }
+
+        .steps-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 1.25rem; top: 1.25rem;
+            width: 2rem; height: 2rem;
+            background: var(--google-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Role-colored step numbers */
+        .steps-list.dealer-steps li::before { background: var(--agency-purple); }
+        .steps-list.agency-steps li::before { background: #e65100; }
+        .steps-list.you-steps    li::before { background: var(--coordinator-teal); }
+
+        .steps-list li.completed::before { background: var(--google-green); }
+
+        .steps-list li .step-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--google-gray-800);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .steps-list li .step-detail {
+            font-size: 0.875rem;
+            color: var(--google-gray-600);
+            line-height: 1.6;
+        }
+
+        .steps-list li .step-detail strong { color: var(--google-gray-700); }
+
+        .steps-list li .step-detail ul {
+            margin-top: 0.5rem;
+            padding-left: 1.25rem;
+        }
+
+        .steps-list li .step-detail ul li {
+            counter-increment: none;
+            padding: 0.2rem 0;
+            background: none;
+            border: none;
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--google-gray-600);
+        }
+
+        .steps-list li .step-detail ul li::before { display: none; }
+
+        /* ============================================================
+           STEP COMPLETION CHECKBOXES
+        ============================================================ */
+        .step-check {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--google-gray-200);
+        }
+
+        .step-check input[type="checkbox"] {
+            width: 18px; height: 18px;
+            accent-color: var(--google-green);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .step-check label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--google-gray-600);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* ============================================================
+           CODE BLOCKS
+        ============================================================ */
+        .code-block {
+            background: #1e1e2e;
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.25rem;
+            margin: 0.75rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-block .code-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .code-block code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.82rem;
+            line-height: 1.7;
+            color: #cdd6f4;
+            word-break: break-all;
+            display: block;
+        }
+
+        .code-block code .tag     { color: #89b4fa; }
+        .code-block code .attr    { color: #f9e2af; }
+        .code-block code .value   { color: #a6e3a1; }
+        .code-block code .comment { color: #6c7086; font-style: italic; }
+        .code-block code .placeholder { color: #f38ba8; font-style: italic; }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.6rem; right: 0.6rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.7);
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .copy-btn:hover { background: rgba(255,255,255,0.2); color: white; }
+
+        .copy-btn.copied {
+            background: rgba(15,157,88,0.3);
+            border-color: rgba(15,157,88,0.4);
+            color: #a6e3a1;
+        }
+
+        /* ============================================================
+           INFO BOXES
+        ============================================================ */
+        .info-box {
+            border-radius: var(--radius-md);
+            padding: 1.15rem 1.25rem;
+            margin: 1rem 0;
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+
+        .info-box svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; }
+        .info-box p   { font-size: 0.875rem; line-height: 1.65; }
+        .info-box strong { font-weight: 600; }
+
+        .info-box.tip       { background: #e8f5e9; border: 1px solid #c8e6c9; color: #2e7d32; }
+        .info-box.warning   { background: #fff8e1; border: 1px solid #ffecb3; color: #e65100; }
+        .info-box.important { background: #e3f2fd; border: 1px solid #bbdefb; color: #1565c0; }
+        .info-box.danger    { background: var(--google-red-light); border: 1px solid #ef9a9a; color: #b71c1c; }
+
+        /* ============================================================
+           DEALER.COM SECTION
+        ============================================================ */
+        .dealer-section {
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            border: 1px solid #c5cae9;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin: 1.25rem 0;
+        }
+
+        .dealer-section h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ford-blue);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dealer-section h3 svg { width: 20px; height: 20px; }
+
+        .dealer-section p,
+        .dealer-section li {
+            font-size: 0.875rem;
+            color: #37474f;
+            line-height: 1.65;
+        }
+
+        .dealer-section ul { padding-left: 1.25rem; margin-top: 0.5rem; }
+        .dealer-section ul li { margin-bottom: 0.4rem; }
+
+        /* ============================================================
+           STATUS BAR
+        ============================================================ */
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .status-bar.pending  { background: #fff8e1; border: 1px solid #ffe082; }
+        .status-bar.ready    { background: #e3f2fd; border: 1px solid #90caf9; }
+        .status-bar.verified { background: #e8f5e9; border: 1px solid #a5d6a7; }
+        .status-bar.failed   { background: var(--google-red-light); border: 1px solid #ef9a9a; }
+
+        .status-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: all 0.4s ease;
+        }
+
+        .status-bar.pending  .status-dot { background: var(--google-yellow); box-shadow: 0 0 0 3px rgba(251,188,4,0.25); }
+        .status-bar.ready    .status-dot { background: var(--google-blue);   box-shadow: 0 0 0 3px rgba(26,115,232,0.25); }
+        .status-bar.verified .status-dot { background: var(--google-green);  box-shadow: 0 0 0 3px rgba(15,157,88,0.25); }
+        .status-bar.failed   .status-dot { background: var(--google-red);    box-shadow: 0 0 0 3px rgba(234,67,53,0.25); }
+
+        .status-bar .status-text { font-size: 0.875rem; font-weight: 500; }
+        .status-bar.pending  .status-text { color: #f57f17; }
+        .status-bar.ready    .status-text { color: #1565c0; }
+        .status-bar.verified .status-text { color: #2e7d32; }
+        .status-bar.failed   .status-text { color: #b71c1c; }
+
+        /* ============================================================
+           DIVIDER
+        ============================================================ */
+        .divider { height: 1px; background: var(--google-gray-200); margin: 1.5rem 0; }
+
+        /* ============================================================
+           CHECKLIST
+        ============================================================ */
+        .checklist { list-style: none; }
+
+        .checklist li {
+            padding: 0.6rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            font-size: 0.9rem;
+            color: var(--google-gray-700);
+            border-bottom: 1px solid var(--google-gray-100);
+        }
+
+        .checklist li:last-child { border-bottom: none; }
+        .checklist li svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; }
+
+        /* ============================================================
+           PROGRESS TRACKER
+        ============================================================ */
+        .progress-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--google-gray-200);
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .progress-header h3 { font-size: 0.95rem; font-weight: 600; color: var(--google-gray-800); }
+        .progress-header span { font-size: 0.8rem; color: var(--google-gray-500); font-weight: 500; }
+
+        .progress-bar-track {
+            height: 6px;
+            background: var(--google-gray-200);
+            border-radius: 100px;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--google-blue), #4fc3f7);
+            border-radius: 100px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-steps { display: flex; justify-content: space-between; }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            flex: 1;
+        }
+
+        .progress-step .dot {
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: var(--google-gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step .dot svg { width: 12px; height: 12px; opacity: 0; transition: opacity 0.3s ease; }
+
+        .progress-step.active .dot    { background: var(--google-blue); box-shadow: 0 0 0 3px rgba(26,115,232,0.2); }
+        .progress-step.active .dot svg { opacity: 1; color: white; }
+        .progress-step.completed .dot { background: var(--google-green); }
+        .progress-step.completed .dot svg { opacity: 1; color: white; }
+
+        .progress-step .label {
+            font-size: 0.7rem;
+            color: var(--google-gray-500);
+            text-align: center;
+            font-weight: 500;
+            max-width: 80px;
+        }
+
+        .progress-step.active .label    { color: var(--google-blue); }
+        .progress-step.completed .label { color: var(--google-green); }
+
+        /* ============================================================
+           VERIFY BUTTON
+        ============================================================ */
+        .verify-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.95rem 2rem;
+            background: var(--google-blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin-top: 1.5rem;
+        }
+
+        .verify-btn:hover {
+            background: var(--google-blue-dark);
+            box-shadow: 0 4px 12px rgba(26,115,232,0.3);
+            transform: translateY(-1px);
+        }
+
+        .verify-btn:active { transform: translateY(0); }
+        .verify-btn svg { width: 18px; height: 18px; }
+
+        .verify-btn:disabled {
+            background: var(--google-gray-300);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .verify-btn.locked {
+            background: var(--google-gray-400);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            opacity: 0.7;
+        }
+
+        /* ============================================================
+           NOTIFICATION PANEL
+        ============================================================ */
+        .notification-panel {
+            background: white;
+            border: 1px solid var(--google-gray-200);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .notification-panel h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--google-gray-800);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .notification-panel h3 svg { width: 18px; height: 18px; color: var(--google-blue); }
+        .notification-panel .np-subtitle {
+            font-size: 0.8rem;
+            color: var(--google-gray-500);
+            margin-bottom: 1.25rem;
+        }
+
+        .notify-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .notify-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .notify-field label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--google-gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .notify-field input {
+            padding: 0.6rem 0.85rem;
+            border: 1px solid var(--google-gray-300);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.875rem;
+            color: var(--google-gray-800);
+            transition: border-color 0.2s ease;
+            outline: none;
+        }
+
+        .notify-field input:focus { border-color: var(--google-blue); box-shadow: 0 0 0 3px rgba(26,115,232,0.1); }
+        .notify-field input::placeholder { color: var(--google-gray-400); }
+
+        .notify-checkboxes {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .notify-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--google-gray-700);
+            cursor: pointer;
+        }
+
+        .notify-checkbox input[type="checkbox"] {
+            width: 16px; height: 16px;
+            accent-color: var(--google-blue);
+            cursor: pointer;
+        }
+
+        .send-notify-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.5rem;
+            background: var(--google-blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .send-notify-btn:hover {
+            background: var(--google-blue-dark);
+            box-shadow: 0 2px 8px rgba(26,115,232,0.3);
+        }
+
+        .send-notify-btn svg { width: 16px; height: 16px; }
+
+        .notify-sent-msg {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--google-green);
+            font-weight: 500;
+            margin-top: 0.75rem;
+        }
+
+        .notify-sent-msg svg { width: 16px; height: 16px; }
+
+        .notify-disclaimer {
+            font-size: 0.75rem;
+            color: var(--google-gray-500);
+            margin-top: 0.75rem;
+            line-height: 1.5;
+            padding: 0.75rem;
+            background: var(--google-gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--google-gray-200);
+        }
+
+        /* ============================================================
+           FOOTER
+        ============================================================ */
+        .page-footer {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--google-gray-200);
+            background: white;
+        }
+
+        .page-footer p { font-size: 0.8rem; color: var(--google-gray-500); }
+
+        /* ============================================================
+           ACCORDION
+        ============================================================ */
+        .accordion { margin-top: 1rem; }
+
+        .accordion-item {
+            border: 1px solid var(--google-gray-200);
+            border-radius: var(--radius-sm);
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+
+        .accordion-trigger {
+            width: 100%;
+            padding: 0.85rem 1.15rem;
+            background: var(--google-gray-50);
+            border: none;
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--google-gray-700);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s ease;
+            text-align: left;
+        }
+
+        .accordion-trigger:hover { background: var(--google-gray-100); }
+        .accordion-trigger svg {
+            width: 18px; height: 18px;
+            transition: transform 0.3s ease;
+            color: var(--google-gray-500);
+            flex-shrink: 0;
+        }
+
+        .accordion-item.open .accordion-trigger svg { transform: rotate(180deg); }
+
+        .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+        .accordion-item.open .accordion-body { max-height: 600px; }
+
+        .accordion-body-inner {
+            padding: 0.75rem 1.15rem 1rem;
+            font-size: 0.85rem;
+            color: var(--google-gray-600);
+            line-height: 1.65;
+        }
+
+        /* ============================================================
+           ANIMATIONS
+        ============================================================ */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-up:nth-child(1) { animation-delay: 0.05s; }
+        .fade-in-up:nth-child(2) { animation-delay: 0.1s; }
+        .fade-in-up:nth-child(3) { animation-delay: 0.15s; }
+        .fade-in-up:nth-child(4) { animation-delay: 0.2s; }
+        .fade-in-up:nth-child(5) { animation-delay: 0.25s; }
+        .fade-in-up:nth-child(6) { animation-delay: 0.3s; }
+        .fade-in-up:nth-child(7) { animation-delay: 0.35s; }
+        .fade-in-up:nth-child(8) { animation-delay: 0.4s; }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        /* ============================================================
+           RESPONSIVE
+        ============================================================ */
+        @media (max-width: 768px) {
+            .role-overview { grid-template-columns: 1fr; }
+            .notify-fields { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .page-header { padding: 2rem 1rem; }
+            .page-header h1 { font-size: 1.5rem; }
+            .tabs-container { padding: 0 1rem; }
+            .tab-btn { padding: 0.7rem 0.75rem; font-size: 0.8rem; }
+            .tab-btn .tab-label { display: none; }
+            .main-content { padding: 1.5rem 1rem 3rem; }
+            .section-card { padding: 1.5rem; }
+            .steps-list li { padding: 1rem 1rem 1rem 3.25rem; }
+            .steps-list li::before { left: 1rem; top: 1rem; }
+            .progress-step .label { font-size: 0.6rem; }
+            .code-block code { font-size: 0.72rem; }
+            .role-legend { gap: 0.75rem; }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+    <!-- ============================================================
+         ROLE LEGEND BAR
+    ============================================================ -->
+    <div class="role-legend">
+        <span class="role-legend-label">Who does what:</span>
+        <span class="role-pill dealer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            </svg>
+            Dealership Action Required
+        </span>
+        <span class="role-pill agency">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            Web Agency / Dealer.com Action
+        </span>
+        <span class="role-pill you">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            You (Coordinator) — Final Verification
+        </span>
+    </div>
+
+    <!-- ============================================================
+         PAGE HEADER
+    ============================================================ -->
+    <header class="page-header">
+        <div class="header-content">
+            <div class="header-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                Google Merchant Center — Website Verification
+            </div>
+            <h1>Verify Your Dealership Website</h1>
+            <p>A step-by-step guide for Ford dealerships, their web agencies, and program coordinators to complete Google Merchant Center website verification.</p>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         ROLE OVERVIEW CARDS
+    ============================================================ -->
+    <div class="role-overview">
+        <div class="role-card dealer">
+            <div class="role-card-header">
+                <div class="role-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    </svg>
+                </div>
+                <h3>Dealership</h3>
+            </div>
+            <ul>
+                <li>Provide Google Merchant Center login access</li>
+                <li>Copy the unique verification tag from GMC</li>
+                <li>Forward the tag to your web agency</li>
+                <li>Confirm when agency has published changes</li>
+            </ul>
+        </div>
+        <div class="role-card agency">
+            <div class="role-card-header">
+                <div class="role-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                </div>
+                <h3>Web Agency / Dealer.com</h3>
+            </div>
+            <ul>
+                <li>Access Dealer.com CMS dashboard</li>
+                <li>Paste tag into Custom Head Code field</li>
+                <li>Save and publish the change</li>
+                <li>Confirm the tag is live on the homepage</li>
+                <li>Notify coordinator when complete</li>
+            </ul>
+        </div>
+        <div class="role-card you">
+            <div class="role-card-header">
+                <div class="role-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <h3>You — Coordinator</h3>
+            </div>
+            <ul>
+                <li>Confirm tag is visible in page source</li>
+                <li>Log into Google Merchant Center</li>
+                <li>Click "Verify Your Online Store"</li>
+                <li>Confirm verification success</li>
+                <li>Notify all parties of completion</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TABS
+    ============================================================ -->
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="html-tag" onclick="switchTab('html-tag')">
+                <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                </svg>
+                <span class="tab-label">HTML Tag Method</span>
+            </button>
+            <button class="tab-btn" data-tab="html-file" onclick="switchTab('html-file')">
+                <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                </svg>
+                <span class="tab-label">HTML File Upload</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         MAIN CONTENT
+    ============================================================ -->
+    <main class="main-content">
+
+        <!-- PROGRESS TRACKER -->
+        <div class="progress-section fade-in-up">
+            <div class="progress-header">
+                <h3>Verification Progress</h3>
+                <span id="progressLabel">Step 1 of 5 — Get Your Tag</span>
+            </div>
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="progressBar" style="width: 20%"></div>
+            </div>
+            <div class="progress-steps">
+                <div class="progress-step active" data-step="1">
+                    <div class="dot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <span class="label">Get Tag</span>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="dot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <span class="label">Agency Adds Tag</span>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="dot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <span class="label">Confirm Live</span>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="dot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <span class="label">Verify in GMC</span>
+                </div>
+                <div class="progress-step" data-step="5">
+                    <div class="dot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <span class="label">Complete</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             TAB 1: HTML TAG METHOD
+        ============================================================ -->
+        <div class="tab-panel active" id="panel-html-tag">
+
+            <!-- WHAT IS THIS -->
+            <div class="section-card fade-in-up">
+                <h2>
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="var(--google-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+                    </svg>
+                    What is Website Verification?
+                </h2>
+                <p class="section-subtitle">
+                    Google needs proof that you own your dealership website before it will trust you with features like Google Shopping, vehicle listings, and local inventory ads. Think of it like showing your ID at the dealership — it proves you're the real deal.
+                </p>
+                <div class="info-box tip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    <p><strong>Good news:</strong> You only need to do this <strong>once</strong>. After verification, Google remembers you. You don't need to re-do it unless the tag is removed from your website.</p>
+                </div>
+            </div>
+
+            <!-- ──────────────────────────────────────────────────────────────
+                 STEP 1 — DEALERSHIP ACTION
+            ────────────────────────────────────────────────────────────── -->
+            <div class="section-card role-dealer fade-in-up">
+                <h2>
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="var(--agency-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Step 1: Get Your Verification Tag from Google
+                    <span class="role-badge dealer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        </svg>
+                        Dealership
+                    </span>
+                </h2>
+
+                <div class="responsibility-box dealer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    </svg>
+                    <div>
+                        <div class="rb-title">Dealership Action Required</div>
+                        <p>The dealership (or someone with access to the Google Merchant Center account) must log in and retrieve the unique verification tag. This tag is specific to your dealership — no one else can use it.</p>
+                    </div>
+                </div>
+
+                <p class="section-subtitle">
+                    Log into your Google Merchant Center account and navigate to <strong>Settings → Business Information → Website</strong>. Select the <strong>"HTML tag"</strong> method. Google will display a unique meta tag for your account.
+                </p>
+
+                <div class="code-block">
+                    <div class="code-label">Example Format — Your Tag Will Look Like This</div>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                        </svg>
+                        Copy
+                    </button>
+                    <code><span class="comment"><!-- Google Merchant Center Site Verification --></span>
+<span class="tag"><meta</span> <span class="attr">name</span>=<span class="value">"google-site-verification"</span> <span class="attr">content</span>=<span class="value">"[GOOGLE_VERIFICATION_TOKEN_PLACEHOLDER]"</span> <span class="tag">/></span></code>
+                </div>
+
+                <div class="info-box danger">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <p><strong>Your tag is unique to your dealership.</strong> The placeholder above is for illustration only. Always use the exact tag Google generates inside your own Merchant Center account. Never share this tag publicly.</p>
+                </div>
+
+                <div class="step-check">
+                    <input type="checkbox" id="check-step1" onchange="handleCheckbox(1)">
+                    <label for="check-step1">✓ I have copied my unique verification tag from Google Merchant Center</label>
+                </div>
+            </div>
+
+            <!-- ──────────────────────────────────────────────────────────────
+                 STEP 2 — AGENCY / DEALER.COM ACTION
+            ────────────────────────────────────────────────────────────── -->
+            <div class="section-card role-agency fade-in-up">
+                <h2>
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="#e65100" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                    Step 2: Add the Tag in Dealer.com
+                    <span class="role-badge agency">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                        Web Agency / Dealer.com
+                    </span>
+                </h2>
+
+                <div class="responsibility-box agency">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                    <div>
+                        <div class="rb-title">Agency / Dealer.com Action Required</div>
+                        <p>Your web agency or Dealer.com administrator must paste the verification tag into the Custom Head Code field in the CMS dashboard and publish the change.</p>
+                    </div>
+                </div>
+
+                <ol class="steps-list agency-steps">
+                    <li>
+                        <div class="step-title">Log into Dealer.com / Dealertrack CMS</div>
+                        <div class="step-detail">
+                            Go to your <strong>Dealer.com Content Management System (CMS)</strong> — the dashboard where you manage your dealership website. You likely already use this to update photos, prices, and specials. If you're not sure how to log in, contact your Ford Digital Program representative or your agency.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-title">Navigate to "Site Settings" or "SEO" Section</div>
+                        <div class="step-detail">
+                            In your Dealer.com dashboard, look for a section called <strong>"Site Settings," "SEO," "Advanced Settings,"</strong> or <strong>"Head Tag Management."</strong> This is typically found under a gear icon ⚙️ or in the main navigation menu. <em>Tip: If you can't find it, search for "meta tags" or "head code" in the Dealer.com help search.</em>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-title">Find the "Custom Head Code" or "Header Scripts" Field</div>
+                        <div class="step-detail">
+                            Dealer.com provides a dedicated text box where you can add custom HTML code that goes into the <code><head></code> section of every page. This is exactly where Google wants the verification tag. It may be labeled:
+                            <ul>
+                                <li><strong>"Custom Header Code"</strong></li>
+                                <li><strong>"<head> Tag Injection"</strong></li>
+                                <li><strong>"Additional Meta Tags"</strong></li>
+                                <li><strong>"SEO — Custom Header Scripts"</strong></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-title">Paste Your Verification Tag</div>
+                        <div class="step-detail">
+                            Paste the entire meta tag you copied from Google into the custom head code field. <strong>Do not add anything else, and do not modify the tag in any way.</strong> It should look exactly like what Google gave you.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-title">Save and Publish Your Changes</div>
+                        <div class="step-detail">
+                            Click <strong>"Save," "Apply," or "Publish."</strong> Dealer.com will push this change to your live website. This may take 5–15 minutes to fully propagate across the web. While you wait, you can move to the next step.
+                        </div>
+                    </li>
+                </ol>
+
+                <div class="step-check">
+                    <input type="checkbox" id="check-step2" onchange="handleCheckbox(2)">
+                    <label for="check-step2">✓Agency has pasted the verification tag and published changes</label>
+                </div>
+
+                <div class="dealer-section">
+                    <h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        Dealer.com (Ford Digital Program) — Important Notes
+                    </h3>
+                    <p>If you're working through a Ford Digital Program (Dealertrack Tier 3), here's what you should know:</p>
+                    <ul>
+                        <li><strong>You don't need FTP or file access.</strong> Dealer.com's CMS handles everything through the dashboard — no technical file uploading required.</li>
+                        <li><strong>The tag goes in the <head> of every page automatically.</strong> When you add it to the "Custom Head Code" field in Dealer.com, it applies site-wide. You only need to paste it once.</li>
+                        <li><strong>If your site is managed by an agency:</strong> Forward this guide to them. They should be able to complete this in under 5 minutes. Most Ford dealership agencies are already familiar with Dealer.com's interface.</li>
+                        <li><strong>Dealer.com support:</strong> If you can't locate the right setting, Dealer.com's support team can walk you through it. Reference: "Adding custom meta tags to the head section."</li>
+                        <li><strong>SSL / HTTPS:</strong> Your Ford Digital site should already be HTTPS. Google requires a secure site for verification. If your site shows a "Not Secure" warning, contact your Digital Program rep first.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ──────────────────────────────────────────────────────────────
+                 STEP 3 — COORDINATOR VERIFICATION BEFORE GOOGLE
+            ────────────────────────────────────────────────────────────── -->
+            <div class="section-card role-you fade-in-up">
+                <h2>
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="var(--coordinator-teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Step 3: Confirm Tag is Live (Coordinator Action)
+                    <span class="role-badge you">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        Coordinator
+                    </span>
+                </h2>
+
+                <div class="responsibility-box you">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    <div>
+                        <div class="rb-title">Coordinator Action Required</div>
+                        <p>Before clicking verify in Google Merchant Center, you must confirm the verification tag is actually present on the dealership's homepage. This prevents unnecessary failed attempts.</p>
+                    </div>
+                </div>
+
+                <p class="section-subtitle">
+                    Open your dealership's homepage in a browser. Right-click on the page and select <strong>"View Page Source"</strong> (or press Ctrl+U / Cmd+U). Search for <code>google-site-verification</code> to confirm the tag is present.
+                </p>
+
+                <ol class="steps-list you-steps">
+                    <li>
+                        <div class="step-title">Open Dealership Homepage</div>
+                        <div class="step-detail">
+                            Navigate to the exact homepage URL that is registered in Google Merchant Center (include or exclude www as appropriate).
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-title">View Page Source</div>
+                        <div class="step-detail">
+                            Right-click anywhere on the page and select <strong>"View Page Source"</strong> or press <strong>Ctrl+U</strong> (Windows) / <strong>Cmd+Option+U</strong> (Mac).
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-title">Search for Verification Tag</div>
+                        <div class="step-detail">
+                            Press <strong>Ctrl+F</strong> (Windows) or <strong>Cmd+F</strong> (Mac) and search for <code>google-site-verification</code>. You should see the meta tag with your unique content value.
+                        </div>
+                    </li>
+                </ol>
+
+                <div class="step-check">
+                    <input type="checkbox" id="check-step3" onchange="handleCheckbox(3)">
+                    <label for="check-step3">✓I have confirmed the verification tag is present in the page source</label>
+                </div>
+            </div>
+
+            <!-- ──────────────────────────────────────────────────────────────
+                 STEP 4 — COORDINATOR CLICKS VERIFY IN GOOGLE
+            ────────────────────────────────────────────────────────────── -->
+            <div class="section-card role-you fade-in-up">
+                <h2>
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="var(--coordinator-teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Step 4: Verify in Google Merchant Center
+                    <span class="role-badge you">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        Coordinator
+                    </span>
+                </h2>
+
+                <div class="responsibility-box you">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    <div>
+                        <div class="rb-title">Coordinator Action Required</div>
+                        <p>Now that the tag is confirmed live, log into Google Merchant Center and click the verify button. This action is performed by the coordinator, not the dealership or agency.</p>
+                    </div>
+                </div>
+
+                <p class="section-subtitle">
+                    Return to the Google Merchant Center verification page where you obtained the tag. Click the <strong>"Verify Your Online Store"</strong> button. Google will check your homepage for the verification tag.
+                </p>
+
+                <div class="status-bar pending" id="statusBarTag">
+                    <div class="status-dot"></div>
+                    <span class="status-text">Waiting for step completion above</span>
+                </div>
+
+                <button class="verify-btn locked" id="verifyBtnTag" onclick="initiateVerification('tag')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    Complete All Steps Above First
+                </button>
+
+                <div class="info-box important" style="margin-top: 1rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+                    </svg>
+                    <p><strong>This button marks your readiness for Google verification.</strong> Once you click it, you must manually log into Google Merchant Center and click the actual "Verify" button provided by Google. This interface does not perform the real verification — it tracks your progress.</p>
+                </div>
+
+                <div class="step-check">
+                    <input type="checkbox" id="check-step4" onchange="handleCheckbox(4)">
+                    <label for="check-step4">✓I have clicked "Verify Your Online Store" in Google Merchant Center</label>
+                </div>
+            </div>
+
+            <!-- ──────────────────────────────────────────────────────────────
+                 STEP 5 — NOTIFICATION & COMPLETION
+            ────────────────────────────────────────────────────────────── -->
+            <div class="section-card fade-in-up">
+                <h2>
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="var(--google-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Step 5:Notify All Parties & Complete
+                </h2>
+
+                <p class="section-subtitle">
+                    After verification succeeds in Google Merchant Center, notify all parties (dealership and agency) that the process is complete. Document the outcome for future reference.
+                </p>
+
+                <!-- NOTIFICATION SYSTEM -->
+                <div class="notification-panel">
+                    <h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        Send Completion Notification
+                    </h3>
+                    <p class="np-subtitle">Notify all stakeholders when verification is complete</p>
+
+                    <div class="notify-fields">
+                        <div class="notify-field">
+                            <label for="notifyDealerContact">Dealership Contact</label>
+                            <input type="text" id="notifyDealerContact" placeholder="name@dealership.com">
+                        </div>
+                        <div class="notify-field">
+                            <label for="notifyAgencyContact">Agency Contact</label>
+                            <input type="text" id="notifyAgencyContact" placeholder="name@agency.com">
+                        </div>
+                    </div>
+
+                    <div class="notify-checkboxes">
+                        <label class="notify-checkbox">
+                            <input type="checkbox" id="notifyDealer" checked>
+                            Notify Dealership
+                        </label>
+                        <label class="notify-checkbox">
+                            <input type="checkbox" id="notifyAgency" checked>
+                            Notify Agency
+                        </label>
+                    </div>
+
+                    <button class="send-notify-btn" onclick="sendNotification()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                        Send Completion Email
+                    </button>
+
+                    <div class="notify-sent-msg" id="notifySentMsg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Notification marked as sent (demo)</span>
+                    </div>
+
+                    <div class="notify-disclaimer">
+                        <strong>Note:</strong> This is a demo interface. In production, this would integrate with your email system or Supabase backend to send actual notifications.
+                    </div>
+                </div>
+
+                <div class="step-check">
+                    <input type="checkbox" id="check-step5" onchange="handleCheckbox(5)">
+                    <label for="check-step5">✓All parties have been notified of verification completion</label>
+                </div>
+
+                <ul class="checklist">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--google-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        Your dealership website is now verified in Google Merchant Center
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--google-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        Vehicle inventory can begin appearing in Google Shopping
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--google-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        Keep the verification tag on your website permanently
+                    </li>
+                </ul>
+            </div>
+
+            <!-- IMPORTANT: DON'T REMOVE TAG -->
+            <div class="section-card fade-in-up">
+                <h2>
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="var(--google-red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    Critical: Don't Remove the Tag
+                </h2>
+
+                <p class="section-subtitle">
+                    Once verified, <strong>leave the HTML tag on your website permanently.</strong> Removing it will cause you to lose verification.
+                </p>
+
+                <ul class="checklist">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--google-red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
+                        </svg>
+                        Removing it will <strong>cause you to lose verification</strong> — and you'll have to start over
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--google-gray-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        It <strong>does not</strong> give Google access to your website's backend, CMS, or any sensitive data
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--google-gray-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        It <strong>does not</strong> slow down your website or affect performance
+                    </li>
+                </ul>
+
+                <div class="info-box warning">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <p><strong>If you switch agencies or redesign your site:</strong> Make sure the new team knows to keep the Google verification tag in place. If they rebuild the site and forget to add it back, you'll lose verification and need to re-verify.</p>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="section-card fade-in-up">
+                <h2>
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="var(--google-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    Frequently Asked Questions
+                </h2>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                            What if I can't find the "Custom Head Code" section in Dealer.com?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-body-inner">
+                                Dealer.com's interface can vary slightly depending on your CMS version. Try these approaches: (1) Look for "Settings" → "SEO" → "Custom Code." (2) Search the Dealer.com help center for "add meta tags" or "head tag." (3) Contact your Ford Digital Program rep — they can either walk you through it or add the tag for you. (4) If your agency manages the site, forward them the verification tag and ask them to add it to the head section.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                            Does this affect my website's SEO or performance?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-body-inner">
+                                No. The verification tag is a single line of HTML that has zero impact on your website's speed, SEO rankings, or functionality. It's invisible to visitors and doesn't load any scripts or resources. It's completely harmless.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                            Google says verification failed — what should I do?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-body-inner">
+                                Don't panic — this is common. First, wait 15–30 minutes after publishing changes in Dealer.com for the update to propagate. Then, check that: (1) The tag is on your <strong>homepage</strong> (e.g., www.yourdealership.com), not a subpage. (2) The tag matches exactly what Google gave you — no typos, no extra characters. (3) You're verifying the correct URL (with or without www — Google is picky about this). If it still fails, try the HTML file upload method as an alternative.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                            What's the difference between Google Merchant Center and Google Search Console?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-body-inner">
+                                <strong>Google Search Console</strong> is about your website's search presence — how your pages appear in Google search results. <strong>Google Merchant Center</strong> is about your products (in this case, vehicles) appearing in Google Shopping and vehicle listings. You typically need to verify in <em>both</em> — Merchant Center often uses Search Console verification. Your Ford Digital Program rep can help ensure both are set up correctly.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             TAB 2: HTML FILE UPLOAD METHOD
+        ============================================================ -->
+        <div class="tab-panel" id="panel-html-file">
+
+            <!-- What is this? -->
+            <div class="section-card fade-in-up">
+                <h2>
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="var(--google-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                    </svg>
+                    Alternative: Upload an HTML Verification File
+                </h2>
+                <p class="section-subtitle">
+                    If the HTML tag method doesn't work or you prefer an alternative approach, you can download a verification HTML file from Google and upload it to your website. This method works differently — instead of adding code to your existing pages, you place a special file on your server.
+                </p>
+
+                <div class="info-box warning">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <p><strong>Dealer.com note:</strong> Dealer.com's standard CMS may not give you direct file upload access to your web server's root directory. If you can't upload files directly, the <strong>HTML tag method (above) is recommended</strong> as it works entirely within the Dealer.com dashboard. However, some Dealer.com configurations do support file uploads — check with your rep.</p>
+                </div>
+            </div>
+
+            <!-- Steps -->
+            <div class="section-card fade-in-up">
+                <h2>
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="var(--google-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Follow These Steps
+                </h2>
+                <p class="section-subtitle">
+                    Use this method if you have direct access to your website's file system (via FTP, SFTP, or a file manager in your hosting panel).
+                </p>
+
+                <ol class="steps-list">
+                    <li>
+                        <div class="step-title">Download the Verification HTML File from Google</div>
+                        <div class="step-detail">
+                            In Google Merchant Center, click the download link for your verification file. It will be named something like:<br><br>
+                            <code style="background: var(--google-gray-100); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.85rem;">google10bad35e588a7878.html</code><br><br>
+                            <strong>Save this file to your computer.</strong> Do not rename it, open it, or modify its contents. The filename is part of the verification.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-title">Upload the File to Your Website's Root Directory</div>
+                        <div class="step-detail">
+                            Upload the file to the <strong>root directory</strong> of your website — the same folder where your <code>index.html</code> or homepage file lives. The file needs to be accessible at:<br><br>
+                            <code style="background: var(--google-gray-100); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.85rem;">https://www.yourdealership.com/google10bad35e588a7878.html</code><br><br>
+                            For Dealer.com sites, this typically requires FTP access or a file manager through your hosting panel.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-title">Confirm the File is Accessible</div>
+                        <div class="step-detail">
+                            Open a browser and navigate to the full URL of the uploaded file (as shown above). You should see a page with text confirming your Google verification. If you see a 404 error or "page not found," the file isn't in the right location.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-title">Click "Verify Your Online Store" in Merchant Center</div>
+                        <div class="step-detail">
+                            Go back to Google Merchant Center and click the verify button. Google will check for the file at the expected URL. If found, your site is verified.
+                        </div>
+                    </li>
+                </ol>
+
+                <div class="dealer-section">
+                    <h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        Dealer.com (Ford Digital) — File Upload Considerations
+                    </h3>
+                    <p>Dealer.com's CMS is primarily designed for content management through their dashboard interface, not direct file system access. Here's what you should know:</p>
+                    <ul>
+                        <li><strong>FTP access:</strong> Some Ford Digital Program configurations provide FTP/SFTP access. Check with your Digital Program rep if this is available for your dealership.</li>
+                        <li><strong>Alternative:</strong> If FTP isn't available, the <strong>HTML tag method is strongly recommended</strong> as it works within Dealer.com's CMS without needing file access.</li>
+                        <li><strong>Agency-managed sites:</strong> If your dealership website is managed by an external agency, they may have FTP access and can upload the file for you. Simply send them the file and the instructions above.</li>
+                        <li><strong>Don't delete after verification:</strong> Even after Google confirms verification, you must keep this file on your server. Deleting it will cause you to lose verification.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Verify Button -->
+            <div class="section-card fade-in-up">
+                <h2>
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="var(--google-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Verify After Upload
+                </h2>
+                <p class="section-subtitle">
+                    Once you've uploaded the file and confirmed it's accessible, click verify.
+                </p>
+
+                <div class="status-bar pending" id="statusBarFile">
+                    <div class="status-dot"></div>
+                    <span class="status-text">Waiting for file upload confirmation</span>
+                </div>
+
+                <button class="verify-btn locked" id="verifyBtnFile" onclick="initiateVerification('file')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    Complete All Steps Above First
+                </button>
+
+                <div class="info-box important" style="margin-top: 1rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+                    </svg>
+                    <p><strong>This button marks your readiness for Google verification.</strong> Once you click it, you must manually log into Google Merchant Center and click the actual "Verify" button provided by Google. This interface does not perform the real verification — it tracks your progress.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer class="page-footer">
+        <p>Google Merchant Center Verification Guide — Ford Dealership Edition</p>
+        <p style="margin-top: 0.25rem; font-size: 0.75rem; color: var(--google-gray-400);">This guide is for reference purposes. Always follow the latest instructions from Google Merchant Center and your Ford Digital Program representative.</p>
+    </footer>
+
+    <!-- ============================================================
+         JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // State Management
+        let checkboxes = {
+            step1: false,
+            step2: false,
+            step3: false,
+            step4: false,
+            step5: false
+        };
+
+        // Tab Switching
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            document.getElementById(`panel-${tabId}`).classList.add('active');
+        }
+
+        // Copy Code
+        function copyCode(btn) {
+            const codeEl = btn.parentElement.querySelector('code');
+            const text = codeEl.textContent || codeEl.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                btn.classList.add('copied');
+                btn.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    Copied!
+                `;
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                        </svg>
+                        Copy
+                    `;
+                }, 2000);
+            });
+        }
+
+        // Handle Checkbox Changes
+        function handleCheckbox(step) {
+            const checkbox = document.getElementById(`check-step${step}`);
+            checkboxes[`step${step}`] = checkbox.checked;
+            
+            // Update progress based on completed steps
+            updateProgress();
+            updateVerifyButton();
+        }
+
+        // Update Progress Tracker
+        function updateProgress() {
+            const completedSteps = Object.values(checkboxes).filter(v => v).length;
+            const progressBar = document.getElementById('progressBar');
+            const progressLabel = document.getElementById('progressLabel');
+            const steps = document.querySelectorAll('.progress-step');
+
+            progressBar.style.width = `${completedSteps * 20}%`;
+            progressLabel.textContent = `Step ${completedSteps + 1} of 5` + (completedSteps === 5 ? ' — Complete' : '');
+
+            steps.forEach((s, i) => {
+                s.classList.remove('active', 'completed');
+                if (i < completedSteps) s.classList.add('completed');
+                if (i === completedSteps) s.classList.add('active');
+            });
+        }
+
+        // Update Verify Button State
+        function updateVerifyButton() {
+            const btn = document.getElementById('verifyBtnTag');
+            const statusBar = document.getElementById('statusBarTag');
+            
+            // Enable button only if Steps 1-3 are checked
+            const ready = checkboxes.step1 && checkboxes.step2 && checkboxes.step3;
+            
+            if (ready) {
+                btn.classList.remove('locked');
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    Click to Mark as Ready for Google Verification
+                `;
+                statusBar.className = 'status-bar ready';
+                statusBar.querySelector('.status-text').textContent = 'Ready for Google verification — click button when ready';
+            } else {
+                btn.classList.add('locked');
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    Complete All Steps Above First
+                `;
+                statusBar.className = 'status-bar pending';
+                statusBar.querySelector('.status-text').textContent = 'Waiting for step completion above';
+            }
+        }
+
+        // Initiate Verification (Progress Tracking Only)
+        function initiateVerification(method) {
+            const btn = method === 'tag' ? document.getElementById('verifyBtnTag') : document.getElementById('verifyBtnFile');
+            const statusBar = method === 'tag' ? document.getElementById('statusBarTag') : document.getElementById('statusBarFile');
+
+            // Check if ready
+            const ready = method === 'tag' 
+                ? (checkboxes.step1 && checkboxes.step2 && checkboxes.step3)
+                : true; // File method simplified
+
+            if (!ready && method === 'tag') {
+                alert('Please complete Steps 1-3 first before marking ready for verification.');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: spin 1s linear infinite;">
+                    <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+                </svg>
+                Marking as Ready...
+            `;
+
+            setTimeout(() => {
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Ready for Google Verification (Click "Verify" in GMC)
+                `;
+                btn.style.background = 'var(--google-blue)';
+                btn.style.boxShadow = '0 4px 12px rgba(26, 115, 232, 0.3)';
+
+                statusBar.className = 'status-bar ready';
+                statusBar.querySelector('.status-text').textContent = 'STEPS COMPLETE. Now log into Google Merchant Center and click the actual "Verify Your Online Store" button provided by Google.';
+
+                if (method === 'tag') {
+                    checkboxes.step4 = true;
+                    updateProgress();
+                    document.getElementById('check-step4').checked = true;
+                }
+            }, 1500);
+        }
+
+        // Send Notification (Demo)
+        function sendNotification() {
+            const btn = document.querySelector('.send-notify-btn');
+            const sentMsg = document.getElementById('notifySentMsg');
+            
+            btn.disabled = true;
+            btn.innerHTML = `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: spin 1s linear infinite;">
+                    <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+                </svg>
+                Sending...
+            `;
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                    Send Completion Email
+                `;
+                sentMsg.style.display = 'flex';
+                
+                checkboxes.step5 = true;
+                updateProgress();
+                
+                setTimeout(() => {
+                    sentMsg.style.display = 'none';
+                }, 5000);
+            }, 1000);
+        }
+
+        // Accordion
+        function toggleAccordion(trigger) {
+            const item = trigger.parentElement;
+            const isOpen = item.classList.contains('open');
+
+            // Close all
+            document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+
+            // Toggle current
+            if (!isOpen) {
+                item.classList.add('open');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateVerifyButton();
+        });
+    </script>
+
+</body>
+</html>
